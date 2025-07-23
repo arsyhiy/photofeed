@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import GalleryImage
 from .forms import UploadImageForm
 
-def gallery_with_upload(request):
+def index(request):
     if request.method == 'POST':
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
