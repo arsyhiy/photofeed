@@ -7,16 +7,18 @@ from django.views.generic import CreateView
 
 
 def index(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
-            for image in request.FILES.getlist('images'):
+            for image in request.FILES.getlist("images"):
                 GalleryImage.objects.create(image=image)
     else:
         form = UploadImageForm()
 
     gallery = GalleryImage.objects.all()
-    return render(request, 'gallery_with_upload.html', {'form': form, 'gallery': gallery})
+    return render(
+        request, "gallery_with_upload.html", {"form": form, "gallery": gallery}
+    )
 
 
 class SignUpView(CreateView):
